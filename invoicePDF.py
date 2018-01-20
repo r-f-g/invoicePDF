@@ -370,7 +370,7 @@ class Invoice:
 		self.__build(number, Purchaser, data, tax, kwargs)
 		
 
-	def return_pdf(self, name, number, Purchaser, data, tax, **kwargs):
+	def return_pdf(self, number, Purchaser, data, tax, **kwargs):
 		buffer = BytesIO()
 		self.__c = canvas.Canvas(buffer)
 		self.__build(number, Purchaser, data, tax, kwargs)
