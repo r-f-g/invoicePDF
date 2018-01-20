@@ -6,9 +6,11 @@ from reportlab.pdfbase import pdfmetrics
 import datetime
 import json
 from io import BytesIO
+import os
+PATH = os.path.dirname(os.path.abspath(__file__))
 
-pdfmetrics.registerFont(TTFont('DejaVuSans','.fonts/DejaVuSans.ttf'))
-pdfmetrics.registerFont(TTFont('DejaVuSans-Bold','.fonts/DejaVuSans-Bold.ttf'))
+pdfmetrics.registerFont(TTFont('DejaVuSans',PATH+'/.fonts/DejaVuSans.ttf'))
+pdfmetrics.registerFont(TTFont('DejaVuSans-Bold',PATH+'/.fonts/DejaVuSans-Bold.ttf'))
 
 class Supplier:
 	def __init__(self, **kwargs):
@@ -22,12 +24,12 @@ class Supplier:
 		self.__dict__.update((k, v) for k, v in kwargs.items() if k in self.__dict__.keys())
 
 	def save(self, to):
-		with open('.cofig/supplier_{0}.json'.format(to), 'w') as f:
+		with open(PATH+'/.cofig/supplier_{0}.json'.format(to), 'w') as f:
 			json.dump(self.__dict__, f, ensure_ascii=False)
 
 	def load(self, fileordata):
 		if type(fileordata) == str:
-			with open('.cofig/supplier_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
+			with open(PATH+'/.cofig/supplier_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
 				self.__dict__.update((k, v) for k,v in json.loads(f.read()).items())
 		else:
 			self.__dict__.update((k, v) for k,v in fileordata)
@@ -41,12 +43,12 @@ class Purchaser:
 		self.__dict__.update((k, v) for k, v in kwargs.items() if k in self.__dict__.keys())
 
 	def save(self, to):
-		with open('.cofig/purchaser_{0}.json'.format(to), 'w') as f:
+		with open(PATH+'/.cofig/purchaser_{0}.json'.format(to), 'w') as f:
 			json.dump(self.__dict__, f, ensure_ascii=False)
 
 	def load(self, fileordata):
 		if type(fileordata) == str:
-			with open('.cofig/purchaser_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
+			with open(PATH+'/.cofig/purchaser_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
 				self.__dict__.update((k, v) for k,v in json.loads(f.read()).items())
 		else:
 			self.__dict__.update((k, v) for k,v in fileordata)
@@ -100,12 +102,12 @@ class Invoice:
 
 	def save(self, to):
 		out = {k:v for k, v in self.__dict__.items() if k.find('__') == -1}
-		with open('.cofig/invoice_{0}.json'.format(to), 'w') as f:
+		with open(PATH+'/.cofig/invoice_{0}.json'.format(to), 'w') as f:
 			json.dump(out, f, ensure_ascii=False)
 
 	def load(self, fileordata):
 		if type(fileordata) == str:
-			with open('.cofig/invoice_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
+			with open(PATH+'/.cofig/invoice_{0}.json'.format(fileordata), 'r', encoding='utf-8') as f:
 				self.__dict__.update((k, v) for k,v in json.loads(f.read()).items())
 		else:
 			self.__dict__.update((k, v) for k,v in fileordata)
