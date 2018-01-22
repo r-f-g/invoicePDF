@@ -160,6 +160,7 @@ class Invoice:
 		self.__c.drawCentredString(3*A4[0]/4, 1.6*cm, self.stamp)
 		x, y = 2*cm, 4.8*cm
 		y = self.__drawIF(x, y, self.__p(kwargs, 'creator'), self.creator, 2.5*cm)
+		y = self.__drawIF(x, y, self.__p(kwargs, 'creator_email'), '', 2.5*cm)
 		self.__c.setFont("DejaVuSans", round(self.font_size*0.5))
 		if self.notes != None:
 			for row in self.notes.split('\n'):
