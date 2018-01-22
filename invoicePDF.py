@@ -241,10 +241,10 @@ class Invoice:
 	def __drawIF(self, x, y, text, title=None, width=0, font_resize=1, option='L'):
 		if title != None and text != None:
 			if option == 'L':
-				self.__c.drawString(x, y, '{0}:'.format(title))
+				self.__c.drawString(x, y, '{0}:'.format(title) if title != '' else '')
 				self.__c.drawString(x+width, y, text)
 			elif option == 'R':
-				self.__c.drawString(x, y, '{0}:'.format(title))
+				self.__c.drawString(x, y, '{0}:'.format(title) if title != '' else '')
 				self.__c.drawRightString(x+width, y, text)
 			y -= font_resize*self.font_size*self.line_spacing
 		elif text != None:
